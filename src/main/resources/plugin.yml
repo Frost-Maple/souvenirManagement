@@ -1,0 +1,8 @@
+name: souvenirManagement
+version: '${version}'
+main: com.mixpixel.SouvenirManagement
+api-version: '1.17'
+commands:
+  souvenirManagement:
+    description: "作文插件"
+    aliases: smgmt
