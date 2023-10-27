@@ -29,12 +29,22 @@ public class smgmtCommand implements CommandExecutor {
                     player.sendMessage("主手地图出现未知错误。");
                 }
                 sender.sendMessage("当前地图Id为："+ check(itemStack));
+                return true;
             }
         }
         else if (args[0].equalsIgnoreCase("getMap")) {
             if (sender instanceof Player player) {
-                player.getWorld().dropItemNaturally(player.getLocation(), SouvenirMaking.craft());
+                try {
+                    player.getWorld().dropItemNaturally(player.getLocation(), SouvenirMaking.craft(args[1]));
+                    return true;
+
+                }
+                catch (Exception e){
+                    sender.sendMessage("输入错误。");
+                    return false;
+                }
             }
+
         }
         return false;
     }
