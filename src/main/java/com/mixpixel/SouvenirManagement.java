@@ -16,7 +16,7 @@ public final class SouvenirManagement extends JavaPlugin {
     public void onDisable() {
         System.out.println("""
         Souvenir Management£¬Æô¶¯^-1£¡
-        Build 7
+        Build 8
         """);
         // Plugin shutdown logic
     }
