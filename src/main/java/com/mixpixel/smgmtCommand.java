@@ -20,11 +20,15 @@ public class smgmtCommand implements CommandExecutor {
         }
         else if (args[0].equalsIgnoreCase("check")) {
             if (sender instanceof Player player) {
-                ItemStack itemStack = player.getItemOnCursor();
+                ItemStack itemStack = player.getInventory().getItemInMainHand();
                 if (check(itemStack)== -1){
+                    player.sendMessage("主手物品无效！");
                     return false;
                 }
-                sender.sendMessage("当前地图Id为："+Integer.toString(check(itemStack)));
+                else if (check(itemStack)==-2){
+                    player.sendMessage("主手地图出现未知错误。");
+                }
+                sender.sendMessage("当前地图Id为："+ check(itemStack));
             }
         }
         else if (args[0].equalsIgnoreCase("getMap")) {
@@ -36,8 +40,13 @@ public class smgmtCommand implements CommandExecutor {
     }
     private int check(ItemStack itemStack){
         if (itemStack == null) return -1;
-        MapMeta mapMeta = (MapMeta) itemStack.getItemMeta();
-        if (!mapMeta.hasMapId())return -2;
-        return mapMeta.getMapId();
+        try{
+            MapMeta mapMeta = (MapMeta) itemStack.getItemMeta();
+            if (!mapMeta.hasMapId())return -2;
+            return mapMeta.getMapId();
+        }
+        catch (Exception e){
+            return -1;
+        }
     }
 }

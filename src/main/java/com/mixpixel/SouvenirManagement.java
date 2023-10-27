@@ -10,13 +10,14 @@ public final class SouvenirManagement extends JavaPlugin {
         System.out.println("Souvenir Management£¬Æô¶¯£¡");
         Bukkit.getPluginCommand("SouvenirManagement").setExecutor(new smgmtCommand());
         // Plugin startup logic
+        saveDefaultConfig();
     }
 
     @Override
     public void onDisable() {
         System.out.println("""
         Souvenir Management£¬Æô¶¯^-1£¡
-        Build 8
+        Build 10
         """);
         // Plugin shutdown logic
     }
